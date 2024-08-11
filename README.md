@@ -7,6 +7,7 @@ This is a React project designed for Auto-Spare-Parts
 ## Project Structure
 
 Here’s an overview of the project structure:
+```
 AUTO-SPARE-PARTS/
 ├── public/
 │ └── index.html # The main HTML file
@@ -21,7 +22,7 @@ AUTO-SPARE-PARTS/
 ├── vite.config.js # Vite configuration
 ├── package.json # Project metadata and dependencies
 └── README.md # This file
-
+```
 
 ## Installation
 

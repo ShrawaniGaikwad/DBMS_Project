@@ -32,15 +32,11 @@ AUTO-SPARE-PARTS/
 
    ```bash
    git clone https://github.com/ShrawaniGaikwad/DBMS_Project.git
-   cd Auto-Spare-Parts
-
-### Installing Dependencies
-
-1. Open a terminal or command prompt.
+   
 2. Navigate to the project directory:
 
     ```bash
-    cd path/to/my-react-project
+    cd Auto-Spare-Parts
     ```
 
 3. Install the project dependencies:

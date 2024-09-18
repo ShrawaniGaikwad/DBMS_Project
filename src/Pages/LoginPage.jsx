@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import { Link, useNavigate } from "react-router-dom"; 
 import PasswordInput from "./components/Input/PasswordInput";
-import { validateEmail } from "./helper"; // Ensure the path is correct
+import { validateEmail } from "./helper"; 
 import { auth } from "../../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth"; // Import signInWithEmailAndPassword
+import { signInWithEmailAndPassword } from "firebase/auth"; 
 
 const LoginPage = () => {
 
@@ -11,7 +11,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -30,7 +30,7 @@ const LoginPage = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/"); // Redirect to home page upon successful login
+      navigate("/"); 
     } catch (error) {
       setError("Invalid email or password.");
     }

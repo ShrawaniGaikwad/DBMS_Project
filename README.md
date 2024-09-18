@@ -3,7 +3,7 @@
 1. Clone the repository:
 
     ```bash
-    git clone <repository-url>
+    git clone --branch backend-branch https://github.com/ShrawaniGaikwad/DBMS_Project
     ```
 
 2. Navigate to the  directory:

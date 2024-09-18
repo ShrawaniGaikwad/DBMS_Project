@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import { auth } from '../../../firebase.js'; // Only importing Firebase auth for user authentication
-import { onAuthStateChanged } from 'firebase/auth'; // For authentication status check
+import { auth } from '../../../firebase.js'; 
+import { onAuthStateChanged } from 'firebase/auth'; 
 import brakepads from '../../assets/brakepads.jpg';
 import carBattery from '../../assets/battery.png';
 import tires from '../../assets/tires.jpg';
@@ -32,7 +32,6 @@ const Home = () => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
                 setUser(currentUser);
-                // Optionally, you can fetch the user's cart from your backend here
             } else {
                 setUser(null);
                 setCart([]);
@@ -74,11 +73,10 @@ const Home = () => {
             setCart(prevCart => [...prevCart, product]);
     
             try {
-                // Combine cart with the new product being added to ensure correct data is sent
                 const updatedCart = [...cart, product];
     
-                console.log('Updated Cart:', updatedCart); // Logging the updated cart for debugging
-                console.log('Sending request with product:', product); // Logging the product being added
+                console.log('Updated Cart:', updatedCart); 
+                console.log('Sending request with product:', product); 
     
                 // Send cart data to your own backend
                 const response = await fetch(`http://localhost:3000/api/cart/${user.uid}`, {
@@ -86,7 +84,7 @@ const Home = () => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ items: updatedCart }), // Use updated cart here
+                    body: JSON.stringify({ items: updatedCart }),
                 });
     
                 if (!response.ok) {
@@ -94,7 +92,7 @@ const Home = () => {
                 }
     
                 const result = await response.json();
-                console.log(result.message); // Log success message
+                console.log(result.message);
             } catch (error) {
                 console.error('Error adding item to cart:', error);
             }

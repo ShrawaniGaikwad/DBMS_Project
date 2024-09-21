@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
-import cartIcon from '../../assets/cart.png'; // Add the path to your cart icon image
-import { auth } from '../../../firebase'; // Import auth from firebase.js
-import { signOut, onAuthStateChanged } from 'firebase/auth'; // Import signOut and onAuthStateChanged
+import cartIcon from '../../assets/cart.png'; 
+import { auth } from '../../../firebase';
+import { signOut, onAuthStateChanged } from 'firebase/auth'; 
 
 const Header = ({ onCartClick }) => {
     const [user, setUser] = useState(null);
@@ -19,7 +19,7 @@ const Header = ({ onCartClick }) => {
     const handleLogout = async () => {
         try {
             await signOut(auth);
-            window.location.href = '/login'; // Redirect to login page after logout
+            window.location.href = '/login'; 
         } catch (error) {
             console.error("Logout error: ", error);
         }

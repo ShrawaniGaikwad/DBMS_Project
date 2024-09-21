@@ -8,18 +8,7 @@ import tires from '../../assets/tires.jpg';
 import Header from '../Header/Header.jsx';
 import Footer from '../Footer/Footer.jsx';
 import homeimage from '../../assets/homeimage.webp';
-import oilFilter from '../../assets/oilFilter.jpg';
-import sparkPlugs from '../../assets/sparkPlugs.jpg';
-import headlights from '../../assets/headlights.jpg';
-import airFilter from '../../assets/airFilter.jpg';
-import wiperBlades from '../../assets/wiperBlades.jpg';
-import radiator from '../../assets/radiator.jpg';
-import alternator from '../../assets/alternator.webp';
-import shockAbsorbers from '../../assets/shockAbsorbers.jpg';
-import timingBelt from '../../assets/timingBelt.png';
-import clutchKit from '../../assets/clutchKit.jpg';
-import fuelPump from '../../assets/fuelPump.jpg';
-import exhaustSystem from '../../assets/exhaustSystem.jpg';
+
 
 const Home = () => {
     const [products, setProducts] = useState([]);

@@ -83,4 +83,48 @@ router.get('/cart/:userId', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
+const formSchema = new mongoose.Schema({
+    firstname: String,
+    lastname: String,
+    email: String,
+    contact: String,
+    gender: String,
+    state: String,
+});
+
+const Form = mongoose.model('form', formSchema, 'form');
+
+router.post('/form', async (req, res) => {
+    try {
+        console.log(req.body);
+        const newFormEntry = new Form(req.body);
+        const savedFormEntry = await newFormEntry.save();
+        console.log('Form data saved successfully:', savedFormEntry);
+        res.json({ message: 'Form data added successfully', newFormEntry: savedFormEntry });
+    } catch (error) {
+        console.error('Error saving form data:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+const productSchema = new mongoose.Schema({
+    id: Number,
+    name: String,
+    price: Number,
+    liked: { type: Boolean, default: false },
+    inCart: { type: Boolean, default: false },
+    image: String
+});
+
+const Product = mongoose.model('products', productSchema, 'products');
+router.get('/products', async (req, res) => {
+    try {
+        const products = await Product.find({});
+        res.json(products);
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 module.exports= router;

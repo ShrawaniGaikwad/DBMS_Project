@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import { auth } from '../../../firebase.js'; // Only importing Firebase auth for user authentication
-import { onAuthStateChanged } from 'firebase/auth'; // For authentication status check
+import { auth } from '../../../firebase.js'; 
+import { onAuthStateChanged } from 'firebase/auth'; 
 import brakepads from '../../assets/brakepads.jpg';
-import carBattery from '../../assets/battery.png';
+import carBattery from '../../assets/carBattery.webp';
 import tires from '../../assets/tires.jpg';
 import Header from '../Header/Header.jsx';
 import Footer from '../Footer/Footer.jsx';
 import homeimage from '../../assets/homeimage.webp';
+import oilFilter from '../../assets/oilFilter.jpg';
+import sparkPlugs from '../../assets/sparkPlugs.jpg';
+import headlights from '../../assets/headlights.jpg';
+import airFilter from '../../assets/airFilter.jpg';
+import wiperBlades from '../../assets/wiperBlades.jpg';
+import radiator from '../../assets/radiator.jpg';
+import alternator from '../../assets/alternator.webp';
+import shockAbsorbers from '../../assets/shockAbsorbers.jpg';
+import timingBelt from '../../assets/timingBelt.png';
+import clutchKit from '../../assets/clutchKit.jpg';
+import fuelPump from '../../assets/fuelPump.jpg';
+import exhaustSystem from '../../assets/exhaustSystem.jpg';
 
 const Home = () => {
-    const [products, setProducts] = useState([
-        { id: 1, name: 'Brake Pads', price: 8500, liked: false, inCart: false, image: brakepads },
-        { id: 2, name: 'Car Battery', price: 4500, liked: false, inCart: false, image: carBattery },
-        { id: 3, name: 'Tires', price: 3000, liked: false, inCart: false, image: tires },
-        { id: 4, name: 'Brake Pads', price: 3500, liked: false, inCart: false, image: brakepads },
-        { id: 5, name: 'Brake Pads', price: 6500, liked: false, inCart: false, image: brakepads },
-        { id: 6, name: 'Car Battery', price: 7500, liked: false, inCart: false, image: carBattery },
-        { id: 7, name: 'Tires', price: 5000, liked: false, inCart: false, image: tires },
-        { id: 8, name: 'Brake Pads', price: 1500, liked: false, inCart: false, image: brakepads },
-    ]);
+    const [products, setProducts] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [sortOption, setSortOption] = useState('price-asc');
@@ -29,13 +32,23 @@ const Home = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        const unsubscribe = onAuthStateChanged(auth, async(currentUser) => {
             if (currentUser) {
                 setUser(currentUser);
-                // Optionally, you can fetch the user's cart from your backend here
             } else {
                 setUser(null);
                 setCart([]);
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/api/products');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error('Error fetching products:', error);
             }
         });
 
@@ -74,19 +87,17 @@ const Home = () => {
             setCart(prevCart => [...prevCart, product]);
     
             try {
-                // Combine cart with the new product being added to ensure correct data is sent
                 const updatedCart = [...cart, product];
     
-                console.log('Updated Cart:', updatedCart); // Logging the updated cart for debugging
-                console.log('Sending request with product:', product); // Logging the product being added
+                console.log('Updated Cart:', updatedCart);
+                console.log('Sending request with product:', product); 
     
-                // Send cart data to your own backend
                 const response = await fetch(`http://localhost:3000/api/cart/${user.uid}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ items: updatedCart }), // Use updated cart here
+                    body: JSON.stringify({ items: updatedCart }), 
                 });
     
                 if (!response.ok) {
@@ -94,7 +105,7 @@ const Home = () => {
                 }
     
                 const result = await response.json();
-                console.log(result.message); // Log success message
+                console.log(result.message); 
             } catch (error) {
                 console.error('Error adding item to cart:', error);
             }
@@ -161,8 +172,8 @@ const Home = () => {
                 </div>
                 <div className="flex flex-wrap justify-center gap-32">
                     {filteredProducts.map(product => (
-                        <div key={product.id} className="bg-white border border-gray-300 rounded-lg w-52 p-4 text-center shadow-md transition-transform duration-200 transform hover:scale-105">
-                            <img src={product.image} alt={product.name} className="w-full h-36 object-cover rounded-lg mb-2" />
+                        <div key={product.id} className="bg-white border border-gray-300 rounded-lg w-64 p-4 text-center shadow-md transition-transform duration-200 transform hover:scale-105">
+                            <img src={product.image} alt={product.name} className="w-full h-36 rounded-lg mb-2" />
                             <div className="mb-2">
                                 <h3 className="text-lg text-gray-800">{product.name}</h3>
                                 <p className="text-gray-600">Price: ₹{product.price}</p>

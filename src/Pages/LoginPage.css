@@ -1,0 +1,72 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .container-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 7rem;
+  }
+  
+  .card {
+    width: 24rem; /* 96px equivalent in Tailwind */
+    border: 1px solid #e2e8f0; /* Border-gray-300 */
+    border-radius: 0.375rem; /* Rounded-md */
+    background-color: white;
+    padding: 2rem 1.75rem; /* Py-10, Px-7 */
+  }
+  
+  /* Form styles */
+  h4 {
+    font-size: 1.5rem; /* Text-2xl */
+    margin-bottom: 1.75rem; /* Mb-7 */
+  }
+  
+  .input-box {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #cbd5e0; /* Border-gray-300 */
+    border-radius: 0.375rem; /* Rounded */
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+  
+  .error-message {
+    color: #f56565; /* Text-red-500 */
+    font-size: 0.75rem; /* Text-xs */
+    padding-bottom: 0.25rem; /* Pb-1 */
+  }
+  
+  .btn-primary {
+    width: 100%;
+    background-color: #3182ce; /* Blue-500 */
+    color: white;
+    padding: 0.75rem;
+    border-radius: 0.375rem; /* Rounded */
+    font-size: 1rem;
+    font-weight: 500; /* Font-medium */
+    cursor: pointer;
+    margin-top: 1.25rem; /* Mt-4 */
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #2b6cb0; /* Hover-blue-600 */
+  }
+  
+  .text-center {
+    text-align: center;
+    margin-top: 1rem; /* Mt-4 */
+  }
+  
+  .text-primary {
+    color: #3182ce; /* Blue-500 */
+  }
+  
+  .text-primary:hover {
+    color: #2b6cb0; /* Hover-blue-600 */
+    text-decoration: underline;
+  }
+  

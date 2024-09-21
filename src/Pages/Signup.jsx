@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import PasswordInput from "./components/Input/PasswordInput";
 import { validateEmail } from "./helper";
 import { auth,createUserWithEmailAndPassword } from "../../firebase"; // Import Firebase configuration
@@ -9,6 +9,8 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -49,6 +51,8 @@ const SignUp = () => {
         setName('');
         setEmail('');
         setPassword('');
+        navigate("/fill-details"); 
+
       } else {
         alert('Failed to submit form.');
       }

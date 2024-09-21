@@ -49,7 +49,7 @@ const CartPage = () => {
         ) : (
           cart.map(item => (
             <div key={item.id} className="cart-item bg-white p-4 rounded-lg shadow-md flex items-center space-x-4">
-              <img src={item.image} alt={item.name} className="w-24 h-24 object-cover rounded" />
+              <img src={item.image} alt={item.name} className="w-24 h-24 " />
               <div className="flex-1">
                 <h2 className="text-xl font-semibold">{item.name}</h2>
                 <p className="text-gray-700">₹{item.price}</p>
@@ -57,7 +57,7 @@ const CartPage = () => {
               </div>
               <button 
                 onClick={() => handleBuy(item.id)} 
-                className="btn-primary bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                className="btn-primary w-32 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
               >
                 Buy
               </button>
